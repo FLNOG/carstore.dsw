@@ -2,28 +2,22 @@ package br.com.carstore.controller;
 
 import br.com.carstore.model.Car;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/cadastro")
 public class IndexController {
 
     @GetMapping("/")
     public String index(){
-
-
-        return "<h1>Hello, World</h1>";
-
+        return "index";
     }
 
-    @GetMapping("/car")
-    public ResponseEntity<Car> nome(String name @RequestParam("car-name"), ){
+    @PostMapping("/car")
+    public ResponseEntity<Car> nome(@RequestParam("car-name") String name, @RequestParam("car-color") String color){
         Car car = new Car();
-        car.setName("Polo");
-        car.setColor("Cinza");
-
-
+        car.setName(name);
+        car.setColor(color);
 
         return ResponseEntity.ok(car);
     }
